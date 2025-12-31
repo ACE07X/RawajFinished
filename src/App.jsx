@@ -468,11 +468,14 @@ const propertiesData = [
 // ============================================
 // CONTACT INFO
 // ============================================
+import { siteConfig } from "./config/siteConfig";
+
 const contactInfo = {
-  phone: '+96891234567',
-  whatsapp: '96891234567',
-  email: 'info@alrawaj.om'
+  phones: siteConfig.phones,
+  whatsapp: siteConfig.whatsapp,
+  email: siteConfig.email
 };
+
 
 // ============================================
 // LANGUAGE CONTEXT

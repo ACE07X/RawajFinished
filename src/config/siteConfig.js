@@ -1,14 +1,15 @@
 export const siteConfig = {
   phones: [
-    "+96893206066",
-    "+96891234567"
+    "93206066",
+    "91234567" // ← replace with the old number you mentioned before
   ],
-  whatsapp: "96893206066",
+  whatsapp: "93206066",
   email: "info@alrawaj.om",
 
   location: {
     country: "Oman",
+    city: "Salalah",
     region: "Dhofar",
-    city: "Salalah"
+    full: "Dhofar, Salalah, Sultanate of Oman"
   }
 };

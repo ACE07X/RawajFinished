@@ -1,7 +1,7 @@
 export const siteConfig = {
   phones: [
     "93206066",
-    "91234567" // ← old number you mentioned before
+    "91234567"
   ],
 
   whatsapp: "93206066",

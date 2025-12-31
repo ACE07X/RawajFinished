@@ -8,6 +8,6 @@ export default defineConfig({
   },
   preview: {
     host: true,
-    allowedHosts: ['rawajfinished-production.up.railway.app']
-  }
+    allowedHosts: ['rawajfinished-production.up.railway.app'],
+  },
 })

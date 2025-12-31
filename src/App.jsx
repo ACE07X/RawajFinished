@@ -1,5 +1,6 @@
 import React, { useState, useEffect, createContext, useContext } from 'react';
-import { ChevronLeft, ChevronRight, Phone, MessageCircle, MapPin, Maximize, Building2, Home, Users, Award, Globe, Menu, X, ArrowRight, Mail, Clock, Shield, Star, Heart, User, LogOut, Settings, FileText } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Phone, MessageCircle, MapPin, Maximize, Building2, Home, Users, Award, Globe, Menu, X, ArrowRight, Mail, Clock, Shield, Star, Heart, User, LogOut, Settings, FileText, Plus, Edit3, Trash2 } from 'lucide-react';
+import { siteConfig } from './siteConfig';
 
 // ============================================
 // CONTENT / i18n SYSTEM
@@ -19,7 +20,7 @@ const content = {
       title: 'Al-Rawaj Real Estate',
       titleAr: 'الروّاج للعقارات',
       subtitle: 'Premium Properties in Oman',
-      description: 'Discover exceptional real estate opportunities across Muscat and beyond. Your trusted partner for premium land and property investments.',
+      description: 'Discover exceptional real estate opportunities across Salalah and beyond. Your trusted partner for premium land and property investments.',
       cta: 'Browse Properties',
       ctaSecondary: 'Contact Us'
     },
@@ -90,7 +91,7 @@ const content = {
       subtitle: 'Your Trusted Real Estate Partner',
       story: {
         title: 'Our Story',
-        content: 'Al-Rawaj Real Estate was established with a vision to provide exceptional real estate services in Oman. We specialize in premium properties, including residential land, villas, apartments, and commercial spaces across Muscat and other key cities.'
+        content: 'Al-Rawaj Real Estate was established with a vision to provide exceptional real estate services in Oman. We specialize in premium properties, including residential land, villas, apartments, and commercial spaces across Salalah and other key cities.'
       },
       mission: {
         title: 'Our Mission',
@@ -120,7 +121,7 @@ const content = {
         hours: 'Working Hours',
         hoursValue: 'Sunday - Thursday: 9:00 AM - 6:00 PM'
       },
-      addressValue: 'Muscat, Sultanate of Oman',
+      addressValue: 'Dhofar, Salalah, Sultanate of Oman',
       cta: {
         title: 'Ready to Find Your Property?',
         description: 'Contact us today and let our team help you discover the perfect property for your needs.',
@@ -191,7 +192,7 @@ const content = {
       title: 'الروّاج للعقارات',
       titleAr: 'Al-Rawaj Real Estate',
       subtitle: 'عقارات متميزة في عُمان',
-      description: 'اكتشف فرص عقارية استثنائية في مسقط وما حولها. شريكك الموثوق للاستثمارات العقارية المتميزة.',
+      description: 'اكتشف فرص عقارية استثنائية في صلالة وما حولها. شريكك الموثوق للاستثمارات العقارية المتميزة.',
       cta: 'تصفح العقارات',
       ctaSecondary: 'اتصل بنا'
     },
@@ -262,7 +263,7 @@ const content = {
       subtitle: 'شريكك العقاري الموثوق',
       story: {
         title: 'قصتنا',
-        content: 'تأسست الروّاج للعقارات برؤية لتقديم خدمات عقارية استثنائية في عُمان. نحن متخصصون في العقارات المتميزة، بما في ذلك الأراضي السكنية والفلل والشقق والمساحات التجارية في مسقط والمدن الرئيسية الأخرى.'
+        content: 'تأسست الروّاج للعقارات برؤية لتقديم خدمات عقارية استثنائية في عُمان. نحن متخصصون في العقارات المتميزة، بما في ذلك الأراضي السكنية والفلل والشقق والمساحات التجارية في صلالة والمدن الرئيسية الأخرى.'
       },
       mission: {
         title: 'مهمتنا',
@@ -292,7 +293,7 @@ const content = {
         hours: 'ساعات العمل',
         hoursValue: 'الأحد - الخميس: 9:00 صباحاً - 6:00 مساءً'
       },
-      addressValue: 'مسقط، سلطنة عُمان',
+      addressValue: 'ظفار، صلالة، سلطنة عُمان',
       cta: {
         title: 'مستعد لإيجاد عقارك؟',
         description: 'تواصل معنا اليوم ودع فريقنا يساعدك في اكتشاف العقار المثالي لاحتياجاتك.',
@@ -352,9 +353,9 @@ const content = {
 };
 
 // ============================================
-// DUMMY PROPERTIES DATA
+// DEFAULT PROPERTIES DATA (used as initial state)
 // ============================================
-const propertiesData = [
+const defaultPropertiesData = [
   {
     id: '1',
     images: [
@@ -368,7 +369,7 @@ const propertiesData = [
       ar: 'أرض سكنية استثنائية في مشروع الموج المرموق. مثالية لبناء فيلا أحلامك مع إطلالات خلابة على الواجهة البحرية. قريبة من مرسى الموج وجميع المرافق.'
     },
     size: 850,
-    city: { en: 'Muscat', ar: 'مسقط' },
+    city: { en: 'Salalah', ar: 'صلالة' },
     area: { en: 'Al Mouj', ar: 'الموج' },
     type: 'land',
     status: 'available'
@@ -386,7 +387,7 @@ const propertiesData = [
       ar: 'فيلا مذهلة من 5 غرف نوم في قلب شاطئ القرم. تشمل المميزات حوض سباحة خاص وحديقة منسقة وتشطيبات فاخرة. على مسافة قريبة من الشاطئ.'
     },
     size: 650,
-    city: { en: 'Muscat', ar: 'مسقط' },
+    city: { en: 'Salalah', ar: 'صلالة' },
     area: { en: 'Shatti Al Qurum', ar: 'شاطئ القرم' },
     type: 'villa',
     status: 'available'
@@ -404,7 +405,7 @@ const propertiesData = [
       ar: 'أرض تجارية رئيسية في منطقة غلا الصناعية. مثالية للمستودعات أو صالات العرض أو التطوير متعدد الاستخدامات. وصول ممتاز للطرق ورؤية عالية.'
     },
     size: 2500,
-    city: { en: 'Muscat', ar: 'مسقط' },
+    city: { en: 'Salalah', ar: 'صلالة' },
     area: { en: 'Ghala', ar: 'غلا' },
     type: 'commercial',
     status: 'sold'
@@ -422,7 +423,7 @@ const propertiesData = [
       ar: 'شقة عصرية من 3 غرف نوم في نادي مسقط هيلز للجولف. تصميم مفتوح وإطلالات رائعة على ملعب الجولف. وصول لمرافق النادي.'
     },
     size: 185,
-    city: { en: 'Muscat', ar: 'مسقط' },
+    city: { en: 'Salalah', ar: 'صلالة' },
     area: { en: 'Muscat Hills', ar: 'مسقط هيلز' },
     type: 'apartment',
     status: 'available'
@@ -440,7 +441,7 @@ const propertiesData = [
       ar: 'قطعة أرض سكنية في موقع ممتاز في بوشر. مناسبة لبناء فيلا مع جميع المرافق متصلة. حي هادئ مع سهولة الوصول للطرق الرئيسية.'
     },
     size: 600,
-    city: { en: 'Muscat', ar: 'مسقط' },
+    city: { en: 'Salalah', ar: 'صلالة' },
     area: { en: 'Bausher', ar: 'بوشر' },
     type: 'land',
     status: 'available'
@@ -458,24 +459,12 @@ const propertiesData = [
       ar: 'فيلا تنفيذية مثيرة للإعجاب من 6 غرف نوم في الخوير. تشمل حوض سباحة خاص وغرف خدم وجراج مزدوج. قريبة من الوزارات والسفارات.'
     },
     size: 800,
-    city: { en: 'Muscat', ar: 'مسقط' },
+    city: { en: 'Salalah', ar: 'صلالة' },
     area: { en: 'Al Khuwair', ar: 'الخوير' },
     type: 'villa',
     status: 'sold'
   }
 ];
-
-// ============================================
-// CONTACT INFO
-// ============================================
-import { siteConfig } from "./config/siteConfig";
-
-const contactInfo = {
-  phones: siteConfig.phones,
-  whatsapp: siteConfig.whatsapp,
-  email: siteConfig.email
-};
-
 
 // ============================================
 // LANGUAGE CONTEXT
@@ -521,6 +510,95 @@ const LanguageProvider = ({ children }) => {
     <LanguageContext.Provider value={{ lang, setLang, toggleLang, t }}>
       {children}
     </LanguageContext.Provider>
+  );
+};
+
+// ============================================
+// ADMIN AUTH CONTEXT (localStorage persistence)
+// ============================================
+const AdminAuthContext = createContext();
+
+const useAdminAuth = () => {
+  const context = useContext(AdminAuthContext);
+  if (!context) {
+    throw new Error('useAdminAuth must be used within AdminAuthProvider');
+  }
+  return context;
+};
+
+const AdminAuthProvider = ({ children }) => {
+  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('alrawaj-admin') === 'true';
+    }
+    return false;
+  });
+
+  const adminLogin = (email, password) => {
+    if (email === 'admin@alrawaj.om' && password === 'rawaj123') {
+      setIsAdminLoggedIn(true);
+      localStorage.setItem('alrawaj-admin', 'true');
+      return true;
+    }
+    return false;
+  };
+
+  const adminLogout = () => {
+    setIsAdminLoggedIn(false);
+    localStorage.removeItem('alrawaj-admin');
+  };
+
+  return (
+    <AdminAuthContext.Provider value={{ isAdminLoggedIn, adminLogin, adminLogout }}>
+      {children}
+    </AdminAuthContext.Provider>
+  );
+};
+
+// ============================================
+// PROPERTIES CONTEXT (localStorage persistence)
+// ============================================
+const PropertiesContext = createContext();
+
+const useProperties = () => {
+  const context = useContext(PropertiesContext);
+  if (!context) {
+    throw new Error('useProperties must be used within PropertiesProvider');
+  }
+  return context;
+};
+
+const PropertiesProvider = ({ children }) => {
+  const [properties, setProperties] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('alrawaj-properties');
+      return saved ? JSON.parse(saved) : defaultPropertiesData;
+    }
+    return defaultPropertiesData;
+  });
+
+  useEffect(() => {
+    localStorage.setItem('alrawaj-properties', JSON.stringify(properties));
+  }, [properties]);
+
+  const addProperty = (property) => {
+    const newProperty = { ...property, id: Date.now().toString() };
+    setProperties(prev => [...prev, newProperty]);
+    return newProperty;
+  };
+
+  const updateProperty = (id, updatedData) => {
+    setProperties(prev => prev.map(p => p.id === id ? { ...p, ...updatedData } : p));
+  };
+
+  const deleteProperty = (id) => {
+    setProperties(prev => prev.filter(p => p.id !== id));
+  };
+
+  return (
+    <PropertiesContext.Provider value={{ properties, addProperty, updateProperty, deleteProperty }}>
+      {children}
+    </PropertiesContext.Provider>
   );
 };
 
@@ -705,6 +783,7 @@ const Header = () => {
   const { t, lang, toggleLang } = useLanguage();
   const { route, navigate } = useRouter();
   const { user, isLoggedIn, logout } = useAuth();
+  const { isAdminLoggedIn } = useAdminAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
@@ -723,6 +802,11 @@ const Header = () => {
     { path: '/about', label: t('nav.about') },
     { path: '/contact', label: t('nav.contact') }
   ];
+
+  // Add admin link only if admin is logged in
+  if (isAdminLoggedIn) {
+    navItems.push({ path: '/admin', label: t('nav.admin') });
+  }
 
   const isActive = (path) => {
     if (path === '/') return route === '/';
@@ -1310,16 +1394,19 @@ const Footer = () => {
           <div>
             <h4 className="text-white font-semibold mb-4">{t('footer.contactInfo')}</h4>
             <div className="flex flex-col gap-3">
+              {siteConfig.phones.map((phone, index) => (
+                <a
+                  key={index}
+                  href={`tel:+968${phone}`}
+                  className="flex items-center gap-2 transition-colors duration-300"
+                  style={{ color: '#8aa0b8' }}
+                >
+                  <Phone className="w-4 h-4" />
+                  <span dir="ltr">+968 {phone}</span>
+                </a>
+              ))}
               <a
-                href={`tel:${contactInfo.phone}`}
-                className="flex items-center gap-2 transition-colors duration-300"
-                style={{ color: '#8aa0b8' }}
-              >
-                <Phone className="w-4 h-4" />
-                <span dir="ltr">{contactInfo.phone}</span>
-              </a>
-              <a
-                href={`https://wa.me/${contactInfo.whatsapp}`}
+                href={`https://wa.me/${siteConfig.whatsapp}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 transition-colors duration-300"
@@ -1329,13 +1416,17 @@ const Footer = () => {
                 <span>WhatsApp</span>
               </a>
               <a
-                href={`mailto:${contactInfo.email}`}
+                href={`mailto:${siteConfig.email}`}
                 className="flex items-center gap-2 transition-colors duration-300"
                 style={{ color: '#8aa0b8' }}
               >
                 <Mail className="w-4 h-4" />
-                <span>{contactInfo.email}</span>
+                <span>{siteConfig.email}</span>
               </a>
+              <div className="flex items-center gap-2" style={{ color: '#8aa0b8' }}>
+                <MapPin className="w-4 h-4" />
+                <span>{siteConfig.location.full}</span>
+              </div>
             </div>
           </div>
         </div>
@@ -1429,6 +1520,7 @@ const ImageSlider = ({ images, title }) => {
 const HomePage = () => {
   const { t } = useLanguage();
   const { navigate } = useRouter();
+  const { properties } = useProperties();
 
   return (
     <main>
@@ -1447,7 +1539,7 @@ const HomePage = () => {
             </p>
           </div>
           
-          <PropertiesGrid properties={propertiesData} />
+          <PropertiesGrid properties={properties} />
           
           <div className="text-center mt-12">
             <button
@@ -1470,6 +1562,7 @@ const HomePage = () => {
 // Properties Page
 const PropertiesPage = () => {
   const { t } = useLanguage();
+  const { properties } = useProperties();
 
   useEffect(() => {
     document.title = `${t('nav.properties')} | Al-Rawaj Real Estate`;
@@ -1489,7 +1582,7 @@ const PropertiesPage = () => {
           </p>
         </div>
 
-        <PropertiesGrid properties={propertiesData} showAll />
+        <PropertiesGrid properties={properties} showAll />
       </div>
     </main>
   );
@@ -1499,8 +1592,9 @@ const PropertiesPage = () => {
 const PropertyDetailsPage = () => {
   const { t, lang } = useLanguage();
   const { navigate, getParams } = useRouter();
+  const { properties } = useProperties();
   const { id } = getParams();
-  const property = propertiesData.find(p => p.id === id);
+  const property = properties.find(p => p.id === id);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -1619,16 +1713,20 @@ const PropertyDetailsPage = () => {
               </h3>
               
               <div className="flex flex-col gap-4">
+                {/* Phone buttons - mapped from siteConfig */}
+                {siteConfig.phones.map((phone, index) => (
+                  <a
+                    key={index}
+                    href={`tel:+968${phone}`}
+                    className="flex items-center justify-center gap-3 py-4 text-white font-semibold rounded-xl shadow-lg transition-all duration-300"
+                    style={{ background: 'linear-gradient(to right, #c9a962, #b8973f)' }}
+                  >
+                    <Phone className="w-5 h-5" />
+                    <span dir="ltr">+968 {phone}</span>
+                  </a>
+                ))}
                 <a
-                  href={`tel:${contactInfo.phone}`}
-                  className="flex items-center justify-center gap-3 py-4 text-white font-semibold rounded-xl shadow-lg transition-all duration-300"
-                  style={{ background: 'linear-gradient(to right, #c9a962, #b8973f)' }}
-                >
-                  <Phone className="w-5 h-5" />
-                  {t('propertyDetails.callNow')}
-                </a>
-                <a
-                  href={`https://wa.me/${contactInfo.whatsapp}`}
+                  href={`https://wa.me/${siteConfig.whatsapp}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-3 py-4 text-white font-semibold rounded-xl transition-all duration-300"
@@ -1642,13 +1740,19 @@ const PropertyDetailsPage = () => {
               {/* Contact Info */}
               <div className="mt-8 pt-8" style={{ borderTop: '1px solid rgba(26,42,74,0.5)' }}>
                 <div className="flex flex-col gap-4 text-sm">
-                  <div className="flex items-center gap-3" style={{ color: '#8aa0b8' }}>
-                    <Phone className="w-4 h-4" />
-                    <span dir="ltr">{contactInfo.phone}</span>
-                  </div>
+                  {siteConfig.phones.map((phone, index) => (
+                    <div key={index} className="flex items-center gap-3" style={{ color: '#8aa0b8' }}>
+                      <Phone className="w-4 h-4" />
+                      <span dir="ltr">+968 {phone}</span>
+                    </div>
+                  ))}
                   <div className="flex items-center gap-3" style={{ color: '#8aa0b8' }}>
                     <Mail className="w-4 h-4" />
-                    <span>{contactInfo.email}</span>
+                    <span>{siteConfig.email}</span>
+                  </div>
+                  <div className="flex items-center gap-3" style={{ color: '#8aa0b8' }}>
+                    <MapPin className="w-4 h-4" />
+                    <span>{siteConfig.location.full}</span>
                   </div>
                 </div>
               </div>
@@ -1771,17 +1875,20 @@ const ContactPage = () => {
             </h2>
 
             <div className="space-y-6">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style={{ backgroundColor: 'rgba(201,169,98,0.1)' }}>
-                  <Phone className="w-5 h-5" style={{ color: '#c9a962' }} />
+              {/* Phones - mapped from siteConfig */}
+              {siteConfig.phones.map((phone, index) => (
+                <div key={index} className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style={{ backgroundColor: 'rgba(201,169,98,0.1)' }}>
+                    <Phone className="w-5 h-5" style={{ color: '#c9a962' }} />
+                  </div>
+                  <div>
+                    <div className="text-sm mb-1" style={{ color: '#8aa0b8' }}>{t('contact.info.phone')} {index + 1}</div>
+                    <a href={`tel:+968${phone}`} className="text-white transition-colors" dir="ltr">
+                      +968 {phone}
+                    </a>
+                  </div>
                 </div>
-                <div>
-                  <div className="text-sm mb-1" style={{ color: '#8aa0b8' }}>{t('contact.info.phone')}</div>
-                  <a href={`tel:${contactInfo.phone}`} className="text-white transition-colors" dir="ltr">
-                    {contactInfo.phone}
-                  </a>
-                </div>
-              </div>
+              ))}
 
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style={{ backgroundColor: 'rgba(201,169,98,0.1)' }}>
@@ -1790,7 +1897,7 @@ const ContactPage = () => {
                 <div>
                   <div className="text-sm mb-1" style={{ color: '#8aa0b8' }}>{t('contact.info.whatsapp')}</div>
                   <a 
-                    href={`https://wa.me/${contactInfo.whatsapp}`}
+                    href={`https://wa.me/${siteConfig.whatsapp}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-white transition-colors"
@@ -1806,8 +1913,8 @@ const ContactPage = () => {
                 </div>
                 <div>
                   <div className="text-sm mb-1" style={{ color: '#8aa0b8' }}>{t('contact.info.email')}</div>
-                  <a href={`mailto:${contactInfo.email}`} className="text-white transition-colors">
-                    {contactInfo.email}
+                  <a href={`mailto:${siteConfig.email}`} className="text-white transition-colors">
+                    {siteConfig.email}
                   </a>
                 </div>
               </div>
@@ -1818,7 +1925,7 @@ const ContactPage = () => {
                 </div>
                 <div>
                   <div className="text-sm mb-1" style={{ color: '#8aa0b8' }}>{t('contact.info.address')}</div>
-                  <span className="text-white">{t('contact.addressValue')}</span>
+                  <span className="text-white">{siteConfig.location.full}</span>
                 </div>
               </div>
 
@@ -1845,7 +1952,7 @@ const ContactPage = () => {
 
             <div className="flex flex-col gap-4">
               <a
-                href={`tel:${contactInfo.phone}`}
+                href={`tel:+968${siteConfig.phones[0]}`}
                 className="flex items-center justify-center gap-3 py-4 text-white font-semibold rounded-xl shadow-lg transition-all duration-300"
                 style={{ background: 'linear-gradient(to right, #c9a962, #b8973f)' }}
               >
@@ -1853,7 +1960,7 @@ const ContactPage = () => {
                 {t('contact.cta.call')}
               </a>
               <a
-                href={`https://wa.me/${contactInfo.whatsapp}`}
+                href={`https://wa.me/${siteConfig.whatsapp}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-3 py-4 text-white font-semibold rounded-xl transition-all duration-300"
@@ -1870,11 +1977,93 @@ const ContactPage = () => {
   );
 };
 
-// Admin Page (Scaffold)
+// Admin Page with full CRUD
 const AdminPage = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { isAdminLoggedIn, adminLogin, adminLogout } = useAdminAuth();
+  const { properties, addProperty, updateProperty, deleteProperty } = useProperties();
+  const { navigate } = useRouter();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [activeTab, setActiveTab] = useState('dashboard');
+  const [editingProperty, setEditingProperty] = useState(null);
+  const [showAddForm, setShowAddForm] = useState(false);
+  
+  // Form state for add/edit
+  const [formData, setFormData] = useState({
+    titleEn: '', titleAr: '', descEn: '', descAr: '', size: '',
+    cityEn: 'Salalah', cityAr: 'صلالة', areaEn: '', areaAr: '',
+    type: 'land', status: 'available',
+    images: ['https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80']
+  });
 
-  if (!isLoggedIn) {
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const success = adminLogin(email, password);
+    if (!success) {
+      setError('Invalid email or password');
+    }
+  };
+
+  const handleLogout = () => {
+    adminLogout();
+    navigate('/');
+  };
+
+  const resetForm = () => {
+    setFormData({
+      titleEn: '', titleAr: '', descEn: '', descAr: '', size: '',
+      cityEn: 'Salalah', cityAr: 'صلالة', areaEn: '', areaAr: '',
+      type: 'land', status: 'available',
+      images: ['https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80']
+    });
+    setEditingProperty(null);
+    setShowAddForm(false);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const propertyData = {
+      title: { en: formData.titleEn, ar: formData.titleAr },
+      description: { en: formData.descEn, ar: formData.descAr },
+      size: parseInt(formData.size),
+      city: { en: formData.cityEn, ar: formData.cityAr },
+      area: { en: formData.areaEn, ar: formData.areaAr },
+      type: formData.type,
+      status: formData.status,
+      images: formData.images
+    };
+
+    if (editingProperty) {
+      updateProperty(editingProperty.id, propertyData);
+    } else {
+      addProperty(propertyData);
+    }
+    resetForm();
+  };
+
+  const handleEdit = (property) => {
+    setFormData({
+      titleEn: property.title.en, titleAr: property.title.ar,
+      descEn: property.description.en, descAr: property.description.ar,
+      size: property.size.toString(),
+      cityEn: property.city.en, cityAr: property.city.ar,
+      areaEn: property.area.en, areaAr: property.area.ar,
+      type: property.type, status: property.status,
+      images: property.images
+    });
+    setEditingProperty(property);
+    setShowAddForm(true);
+  };
+
+  const handleDelete = (id) => {
+    if (window.confirm('Are you sure you want to delete this property?')) {
+      deleteProperty(id);
+    }
+  };
+
+  // Login Page
+  if (!isAdminLoggedIn) {
     return (
       <main className="min-h-screen flex items-center justify-center p-6" style={{ backgroundColor: '#152238' }}>
         <div className="w-full max-w-md">
@@ -1886,40 +2075,52 @@ const AdminPage = () => {
             <p className="mt-2" style={{ color: '#8aa0b8' }}>Al-Rawaj Real Estate</p>
           </div>
 
-          <div className="rounded-2xl p-8" style={{ backgroundColor: 'rgba(26,42,74,0.5)', border: '1px solid rgba(30,51,84,0.5)' }}>
+          <form onSubmit={handleLogin} className="rounded-2xl p-8" style={{ backgroundColor: 'rgba(26,42,74,0.5)', border: '1px solid rgba(30,51,84,0.5)' }}>
+            {error && (
+              <div className="mb-4 p-3 rounded-lg text-red-400 text-sm" style={{ backgroundColor: 'rgba(239,68,68,0.1)' }}>
+                {error}
+              </div>
+            )}
             <div className="space-y-4">
               <div>
                 <label className="block text-sm mb-2" style={{ color: '#8aa0b8' }}>Email</label>
                 <input
                   type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   className="w-full px-4 py-3 rounded-xl text-white transition-colors"
                   style={{ backgroundColor: 'rgba(15,28,46,0.5)', border: '1px solid rgba(30,51,84,0.5)' }}
                   placeholder="admin@alrawaj.om"
+                  required
                 />
               </div>
               <div>
                 <label className="block text-sm mb-2" style={{ color: '#8aa0b8' }}>Password</label>
                 <input
                   type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   className="w-full px-4 py-3 rounded-xl text-white transition-colors"
                   style={{ backgroundColor: 'rgba(15,28,46,0.5)', border: '1px solid rgba(30,51,84,0.5)' }}
                   placeholder="••••••••"
+                  required
                 />
               </div>
               <button
-                onClick={() => setIsLoggedIn(true)}
+                type="submit"
                 className="w-full py-4 text-white font-semibold rounded-xl transition-all duration-300 mt-4"
                 style={{ background: 'linear-gradient(to right, #c9a962, #b8973f)' }}
               >
                 Sign In
               </button>
             </div>
-          </div>
+          </form>
         </div>
       </main>
     );
   }
 
+  // Admin Dashboard
   return (
     <main className="min-h-screen" style={{ backgroundColor: '#152238' }}>
       {/* Admin Header */}
@@ -1934,13 +2135,14 @@ const AdminPage = () => {
               <div className="text-xs" style={{ color: '#8aa0b8' }}>Management Panel</div>
             </div>
           </div>
-          <button
-            onClick={() => setIsLoggedIn(false)}
-            className="px-4 py-2 transition-colors"
-            style={{ color: '#8aa0b8' }}
-          >
-            Logout
-          </button>
+          <div className="flex items-center gap-4">
+            <button onClick={() => navigate('/')} className="px-4 py-2 transition-colors text-sm" style={{ color: '#8aa0b8' }}>
+              View Site
+            </button>
+            <button onClick={handleLogout} className="px-4 py-2 transition-colors text-sm flex items-center gap-2" style={{ color: '#ef4444' }}>
+              <LogOut className="w-4 h-4" /> Logout
+            </button>
+          </div>
         </div>
       </header>
 
@@ -1949,92 +2151,151 @@ const AdminPage = () => {
         {/* Sidebar */}
         <aside className="w-64 min-h-[calc(100vh-73px)] p-6" style={{ backgroundColor: 'rgba(15,28,46,0.5)', borderRight: '1px solid rgba(26,42,74,0.5)' }}>
           <nav className="space-y-2">
-            <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl" style={{ backgroundColor: 'rgba(201,169,98,0.1)', color: '#c9a962' }}>
-              <Home className="w-5 h-5" />
-              Dashboard
+            <button onClick={() => setActiveTab('dashboard')} className="w-full flex items-center gap-3 px-4 py-3 rounded-xl" style={activeTab === 'dashboard' ? { backgroundColor: 'rgba(201,169,98,0.1)', color: '#c9a962' } : { color: '#8aa0b8' }}>
+              <Home className="w-5 h-5" /> Dashboard
             </button>
-            <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-colors" style={{ color: '#8aa0b8' }}>
-              <Building2 className="w-5 h-5" />
-              Properties
-            </button>
-            <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-colors" style={{ color: '#8aa0b8' }}>
-              <Users className="w-5 h-5" />
-              Inquiries
+            <button onClick={() => setActiveTab('properties')} className="w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-colors" style={activeTab === 'properties' ? { backgroundColor: 'rgba(201,169,98,0.1)', color: '#c9a962' } : { color: '#8aa0b8' }}>
+              <Building2 className="w-5 h-5" /> Properties
             </button>
           </nav>
         </aside>
 
         {/* Main Content */}
         <div className="flex-1 p-8">
-          <h1 className="text-2xl font-bold text-white mb-8">Dashboard</h1>
-          
-          {/* Stats */}
-          <div className="grid grid-cols-3 gap-6 mb-8">
-            <div className="p-6 rounded-2xl" style={{ backgroundColor: 'rgba(26,42,74,0.5)', border: '1px solid rgba(30,51,84,0.5)' }}>
-              <div className="text-sm mb-1" style={{ color: '#8aa0b8' }}>Total Properties</div>
-              <div className="text-3xl font-bold text-white">{propertiesData.length}</div>
-            </div>
-            <div className="p-6 rounded-2xl" style={{ backgroundColor: 'rgba(26,42,74,0.5)', border: '1px solid rgba(30,51,84,0.5)' }}>
-              <div className="text-sm mb-1" style={{ color: '#8aa0b8' }}>Available</div>
-              <div className="text-3xl font-bold" style={{ color: '#34d399' }}>
-                {propertiesData.filter(p => p.status === 'available').length}
+          {activeTab === 'dashboard' && (
+            <>
+              <h1 className="text-2xl font-bold text-white mb-8">Dashboard</h1>
+              <div className="grid grid-cols-3 gap-6 mb-8">
+                <div className="p-6 rounded-2xl" style={{ backgroundColor: 'rgba(26,42,74,0.5)', border: '1px solid rgba(30,51,84,0.5)' }}>
+                  <div className="text-sm mb-1" style={{ color: '#8aa0b8' }}>Total Properties</div>
+                  <div className="text-3xl font-bold text-white">{properties.length}</div>
+                </div>
+                <div className="p-6 rounded-2xl" style={{ backgroundColor: 'rgba(26,42,74,0.5)', border: '1px solid rgba(30,51,84,0.5)' }}>
+                  <div className="text-sm mb-1" style={{ color: '#8aa0b8' }}>Available</div>
+                  <div className="text-3xl font-bold" style={{ color: '#34d399' }}>{properties.filter(p => p.status === 'available').length}</div>
+                </div>
+                <div className="p-6 rounded-2xl" style={{ backgroundColor: 'rgba(26,42,74,0.5)', border: '1px solid rgba(30,51,84,0.5)' }}>
+                  <div className="text-sm mb-1" style={{ color: '#8aa0b8' }}>Sold</div>
+                  <div className="text-3xl font-bold" style={{ color: '#8aa0b8' }}>{properties.filter(p => p.status === 'sold').length}</div>
+                </div>
               </div>
-            </div>
-            <div className="p-6 rounded-2xl" style={{ backgroundColor: 'rgba(26,42,74,0.5)', border: '1px solid rgba(30,51,84,0.5)' }}>
-              <div className="text-sm mb-1" style={{ color: '#8aa0b8' }}>Sold</div>
-              <div className="text-3xl font-bold" style={{ color: '#8aa0b8' }}>
-                {propertiesData.filter(p => p.status === 'sold').length}
-              </div>
-            </div>
-          </div>
+            </>
+          )}
 
-          {/* Properties Table */}
-          <div className="rounded-2xl overflow-hidden" style={{ backgroundColor: 'rgba(26,42,74,0.5)', border: '1px solid rgba(30,51,84,0.5)' }}>
-            <div className="px-6 py-4 flex items-center justify-between" style={{ borderBottom: '1px solid rgba(30,51,84,0.5)' }}>
-              <h2 className="text-lg font-semibold text-white">Properties</h2>
-              <button className="px-4 py-2 text-white rounded-lg text-sm font-medium transition-colors" style={{ backgroundColor: '#c9a962' }}>
-                Add Property
-              </button>
-            </div>
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead>
-                  <tr style={{ borderBottom: '1px solid rgba(30,51,84,0.5)' }}>
-                    <th className="px-6 py-3 text-left text-xs font-medium uppercase" style={{ color: '#8aa0b8' }}>Title</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium uppercase" style={{ color: '#8aa0b8' }}>Type</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium uppercase" style={{ color: '#8aa0b8' }}>City</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium uppercase" style={{ color: '#8aa0b8' }}>Size</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium uppercase" style={{ color: '#8aa0b8' }}>Status</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium uppercase" style={{ color: '#8aa0b8' }}>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {propertiesData.map((property) => (
-                    <tr key={property.id} style={{ borderBottom: '1px solid rgba(30,51,84,0.3)' }}>
-                      <td className="px-6 py-4 text-white">{property.title.en}</td>
-                      <td className="px-6 py-4 capitalize" style={{ color: '#8aa0b8' }}>{property.type}</td>
-                      <td className="px-6 py-4" style={{ color: '#8aa0b8' }}>{property.city.en}</td>
-                      <td className="px-6 py-4" style={{ color: '#8aa0b8' }}>{property.size} m²</td>
-                      <td className="px-6 py-4">
-                        <span 
-                          className="px-2 py-1 rounded-full text-xs font-medium"
-                          style={property.status === 'available'
-                            ? { backgroundColor: 'rgba(16,185,129,0.2)', color: '#34d399' }
-                            : { backgroundColor: 'rgba(90,122,154,0.2)', color: '#8aa0b8' }
-                          }
-                        >
-                          {property.status}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4">
-                        <button className="text-sm" style={{ color: '#c9a962' }}>Edit</button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
+          {activeTab === 'properties' && (
+            <>
+              <div className="flex items-center justify-between mb-8">
+                <h1 className="text-2xl font-bold text-white">Properties</h1>
+                <button onClick={() => { resetForm(); setShowAddForm(true); }} className="px-4 py-2 text-white rounded-lg text-sm font-medium flex items-center gap-2" style={{ backgroundColor: '#c9a962' }}>
+                  <Plus className="w-4 h-4" /> Add Property
+                </button>
+              </div>
+
+              {/* Add/Edit Form */}
+              {showAddForm && (
+                <div className="mb-8 p-6 rounded-2xl" style={{ backgroundColor: 'rgba(26,42,74,0.5)', border: '1px solid rgba(30,51,84,0.5)' }}>
+                  <h2 className="text-xl font-semibold text-white mb-6">{editingProperty ? 'Edit Property' : 'Add New Property'}</h2>
+                  <form onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm mb-2" style={{ color: '#8aa0b8' }}>Title (English)</label>
+                      <input type="text" value={formData.titleEn} onChange={(e) => setFormData({...formData, titleEn: e.target.value})} className="w-full px-4 py-3 rounded-xl text-white" style={{ backgroundColor: 'rgba(15,28,46,0.5)', border: '1px solid rgba(30,51,84,0.5)' }} required />
+                    </div>
+                    <div>
+                      <label className="block text-sm mb-2" style={{ color: '#8aa0b8' }}>Title (Arabic)</label>
+                      <input type="text" value={formData.titleAr} onChange={(e) => setFormData({...formData, titleAr: e.target.value})} className="w-full px-4 py-3 rounded-xl text-white" style={{ backgroundColor: 'rgba(15,28,46,0.5)', border: '1px solid rgba(30,51,84,0.5)' }} dir="rtl" required />
+                    </div>
+                    <div className="md:col-span-2">
+                      <label className="block text-sm mb-2" style={{ color: '#8aa0b8' }}>Description (English)</label>
+                      <textarea value={formData.descEn} onChange={(e) => setFormData({...formData, descEn: e.target.value})} className="w-full px-4 py-3 rounded-xl text-white" style={{ backgroundColor: 'rgba(15,28,46,0.5)', border: '1px solid rgba(30,51,84,0.5)' }} rows="3" required />
+                    </div>
+                    <div className="md:col-span-2">
+                      <label className="block text-sm mb-2" style={{ color: '#8aa0b8' }}>Description (Arabic)</label>
+                      <textarea value={formData.descAr} onChange={(e) => setFormData({...formData, descAr: e.target.value})} className="w-full px-4 py-3 rounded-xl text-white" style={{ backgroundColor: 'rgba(15,28,46,0.5)', border: '1px solid rgba(30,51,84,0.5)' }} rows="3" dir="rtl" required />
+                    </div>
+                    <div>
+                      <label className="block text-sm mb-2" style={{ color: '#8aa0b8' }}>Size (m²)</label>
+                      <input type="number" value={formData.size} onChange={(e) => setFormData({...formData, size: e.target.value})} className="w-full px-4 py-3 rounded-xl text-white" style={{ backgroundColor: 'rgba(15,28,46,0.5)', border: '1px solid rgba(30,51,84,0.5)' }} required />
+                    </div>
+                    <div>
+                      <label className="block text-sm mb-2" style={{ color: '#8aa0b8' }}>Type</label>
+                      <select value={formData.type} onChange={(e) => setFormData({...formData, type: e.target.value})} className="w-full px-4 py-3 rounded-xl text-white" style={{ backgroundColor: 'rgba(15,28,46,0.5)', border: '1px solid rgba(30,51,84,0.5)' }}>
+                        <option value="land">Land</option>
+                        <option value="villa">Villa</option>
+                        <option value="apartment">Apartment</option>
+                        <option value="commercial">Commercial</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-sm mb-2" style={{ color: '#8aa0b8' }}>Area (English)</label>
+                      <input type="text" value={formData.areaEn} onChange={(e) => setFormData({...formData, areaEn: e.target.value})} className="w-full px-4 py-3 rounded-xl text-white" style={{ backgroundColor: 'rgba(15,28,46,0.5)', border: '1px solid rgba(30,51,84,0.5)' }} required />
+                    </div>
+                    <div>
+                      <label className="block text-sm mb-2" style={{ color: '#8aa0b8' }}>Area (Arabic)</label>
+                      <input type="text" value={formData.areaAr} onChange={(e) => setFormData({...formData, areaAr: e.target.value})} className="w-full px-4 py-3 rounded-xl text-white" style={{ backgroundColor: 'rgba(15,28,46,0.5)', border: '1px solid rgba(30,51,84,0.5)' }} dir="rtl" required />
+                    </div>
+                    <div>
+                      <label className="block text-sm mb-2" style={{ color: '#8aa0b8' }}>Status</label>
+                      <select value={formData.status} onChange={(e) => setFormData({...formData, status: e.target.value})} className="w-full px-4 py-3 rounded-xl text-white" style={{ backgroundColor: 'rgba(15,28,46,0.5)', border: '1px solid rgba(30,51,84,0.5)' }}>
+                        <option value="available">Available</option>
+                        <option value="sold">Sold</option>
+                      </select>
+                    </div>
+                    <div className="md:col-span-2 flex gap-4 mt-4">
+                      <button type="submit" className="px-6 py-3 text-white font-semibold rounded-xl" style={{ background: 'linear-gradient(to right, #c9a962, #b8973f)' }}>
+                        {editingProperty ? 'Update Property' : 'Add Property'}
+                      </button>
+                      <button type="button" onClick={resetForm} className="px-6 py-3 rounded-xl" style={{ backgroundColor: 'rgba(255,255,255,0.1)', color: '#b8c8d8' }}>
+                        Cancel
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              )}
+
+              {/* Properties Table */}
+              <div className="rounded-2xl overflow-hidden" style={{ backgroundColor: 'rgba(26,42,74,0.5)', border: '1px solid rgba(30,51,84,0.5)' }}>
+                <div className="overflow-x-auto">
+                  <table className="w-full">
+                    <thead>
+                      <tr style={{ borderBottom: '1px solid rgba(30,51,84,0.5)' }}>
+                        <th className="px-6 py-3 text-left text-xs font-medium uppercase" style={{ color: '#8aa0b8' }}>Title</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium uppercase" style={{ color: '#8aa0b8' }}>Type</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium uppercase" style={{ color: '#8aa0b8' }}>Area</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium uppercase" style={{ color: '#8aa0b8' }}>Size</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium uppercase" style={{ color: '#8aa0b8' }}>Status</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium uppercase" style={{ color: '#8aa0b8' }}>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {properties.map((property) => (
+                        <tr key={property.id} style={{ borderBottom: '1px solid rgba(30,51,84,0.3)' }}>
+                          <td className="px-6 py-4 text-white">{property.title.en}</td>
+                          <td className="px-6 py-4 capitalize" style={{ color: '#8aa0b8' }}>{property.type}</td>
+                          <td className="px-6 py-4" style={{ color: '#8aa0b8' }}>{property.area.en}</td>
+                          <td className="px-6 py-4" style={{ color: '#8aa0b8' }}>{property.size} m²</td>
+                          <td className="px-6 py-4">
+                            <span className="px-2 py-1 rounded-full text-xs font-medium" style={property.status === 'available' ? { backgroundColor: 'rgba(16,185,129,0.2)', color: '#34d399' } : { backgroundColor: 'rgba(90,122,154,0.2)', color: '#8aa0b8' }}>
+                              {property.status}
+                            </span>
+                          </td>
+                          <td className="px-6 py-4">
+                            <div className="flex items-center gap-2">
+                              <button onClick={() => handleEdit(property)} className="p-2 rounded-lg transition-colors" style={{ color: '#c9a962' }}>
+                                <Edit3 className="w-4 h-4" />
+                              </button>
+                              <button onClick={() => handleDelete(property.id)} className="p-2 rounded-lg transition-colors" style={{ color: '#ef4444' }}>
+                                <Trash2 className="w-4 h-4" />
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </main>
@@ -2340,8 +2601,9 @@ const FavoritesPage = () => {
   const { t, lang } = useLanguage();
   const { navigate } = useRouter();
   const { isLoggedIn, favorites } = useAuth();
+  const { properties } = useProperties();
 
-  const favoriteProperties = propertiesData.filter(p => favorites.includes(p.id));
+  const favoriteProperties = properties.filter(p => favorites.includes(p.id));
 
   return (
     <main className="pt-24 pb-16 min-h-screen" style={{ backgroundColor: '#0f1c2e' }}>
@@ -2391,6 +2653,7 @@ const InquiriesPage = () => {
   const { t, lang } = useLanguage();
   const { navigate } = useRouter();
   const { isLoggedIn, inquiries } = useAuth();
+  const { properties } = useProperties();
 
   return (
     <main className="pt-24 pb-16 min-h-screen" style={{ backgroundColor: '#0f1c2e' }}>
@@ -2414,7 +2677,7 @@ const InquiriesPage = () => {
         {inquiries.length > 0 ? (
           <div className="space-y-4">
             {inquiries.map((inquiry) => {
-              const property = propertiesData.find(p => p.id === inquiry.propertyId);
+              const property = properties.find(p => p.id === inquiry.propertyId);
               return (
                 <div
                   key={inquiry.id}
@@ -2620,12 +2883,15 @@ export default function AlRawajRealEstate() {
       `}</style>
       
       <LanguageProvider>
-        <AuthProvider>
-          <RouterProvider>
-            <Router />
-          </RouterProvider>
-        </AuthProvider>
+        <AdminAuthProvider>
+          <PropertiesProvider>
+            <AuthProvider>
+              <RouterProvider>
+                <Router />
+              </RouterProvider>
+            </AuthProvider>
+          </PropertiesProvider>
+        </AdminAuthProvider>
       </LanguageProvider>
     </div>
   );
-}

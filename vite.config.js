@@ -3,17 +3,11 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-
   server: {
-    host: '0.0.0.0',
-    port: 3000,
+    host: true,
   },
-
   preview: {
-    host: '0.0.0.0',
-    port: process.env.PORT || 3000,
-    allowedHosts: [
-      'rawajfinished-production.up.railway.app'
-    ]
+    host: true,
+    allowedHosts: ['rawajfinished-production.up.railway.app']
   }
 })

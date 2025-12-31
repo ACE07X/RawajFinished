@@ -1,6 +1,31 @@
 import React, { useState, useEffect, createContext, useContext } from 'react';
-import { ChevronLeft, ChevronRight, Phone, MessageCircle, MapPin, Maximize, Building2, Home, Users, Award, Globe, Menu, X, ArrowRight, Mail, Clock, Shield, Star, Heart, User, LogOut, Settings, FileText, Plus, Edit3, Trash2 } from 'lucide-react';
+import {
+  ChevronLeft,
+  ChevronRight,
+  Phone,
+  MessageCircle,
+  MapPin,
+  Maximize,
+  Home,
+  Users,
+  Award,
+  Globe,
+  Menu,
+  X,
+  ArrowRight,
+  Mail,
+  Clock,
+  Shield,
+  Star,
+  Heart,
+  User,
+  Settings,
+  FileText,
+  Plus,
+  Trash
+} from 'lucide-react';
 import { siteConfig } from './config/siteConfig';
+
 // ============================================
 // CONTENT / i18n SYSTEM
 // ============================================
